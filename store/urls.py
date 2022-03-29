@@ -4,10 +4,10 @@ from django.urls import path
 from .  import views
 
 
-
+app_name = 'store'
 
 urlpatterns = [
-    path('store/',views.all_products,name='home'),
+    path('',views.all_products,name='all_products'),
     
 ]
 
