@@ -51,3 +51,7 @@ class Product(models.Model):
     def __str__(self):
         return self.title
         
+    
+    def get_absolute_url(self):
+        """ URL name """
+        return reverse('store:product_detail',args=[self.slug])
