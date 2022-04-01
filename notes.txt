@@ -1,6 +1,6 @@
 
 
-1.38  minutes
+2:06  minutes
 
 testing1>>   1:0
 testing2>>   2:06:57
