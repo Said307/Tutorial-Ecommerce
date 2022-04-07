@@ -1,6 +1,6 @@
 
 
 2:06  minutes
-
-testing1>>   44:00
-testing2>>   2:08:500
+coverage 49:00
+testing1>>   1:0
+testing2>>   2:06:57
