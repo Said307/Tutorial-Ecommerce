@@ -1,0 +1,19 @@
+
+
+
+{
+    "python.defaultInterpreterPath": "C:\\Users\\ssaid\\lk\\Python310",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    "python.formatting.provider": "black",
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "C:\\Users\\ssaid\\sadiq\\denv\\Lib\\site-packages",
+    "python.linting.lintOnSave": true,
+    "editor.formatOnSave": true
+
+}
