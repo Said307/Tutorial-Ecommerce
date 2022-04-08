@@ -12,7 +12,7 @@ def category_list(request,category_slug):
     return render(request,'store/products/category.html',context)
 
 def all_products(request):
-    products = Product.objects.all()
+    products = Product.objects.filter(is_active=True)
     context = {'products':products,}
     return render(request,'store/home.html',context)
 
