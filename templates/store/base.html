@@ -5,7 +5,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>{% block title %}My shop{% endblock %}</title>
+    <title>{% block title %}Bookstore{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
@@ -43,8 +43,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-              
-              
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
@@ -60,7 +58,7 @@
                   <li>
                     <a
                       class="dropdown-item"
-                      href="{% url 'store:all_products' %}"
+                      href="{% url 'store:products_all' %}"
                       >All</a
                     >
                   </li>
@@ -76,12 +74,13 @@
               </li>
             </ul>
 
-            <form class="d-flex">
+            <form method="GET" action="" class="d-flex">
               <input
                 class="form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                name="q"
               />
               <button class="btn btn-outline-success" type="submit">
                 Search
