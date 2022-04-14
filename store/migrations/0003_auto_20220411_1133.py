@@ -7,14 +7,14 @@ import django.db.models.manager
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('store', '0002_auto_20220331_1914'),
+        ("store", "0002_auto_20220331_1914"),
     ]
 
     operations = [
         migrations.AlterModelManagers(
-            name='product',
+            name="product",
             managers=[
-                ('active_products', django.db.models.manager.Manager()),
+                ("active_products", django.db.models.manager.Manager()),
             ],
         ),
     ]

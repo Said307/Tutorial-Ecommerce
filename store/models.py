@@ -1,6 +1,5 @@
 # from curses.ascii import FF
 from tabnanny import verbose
-from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse

@@ -2,6 +2,7 @@
 
 
 .env
+.coverage
 .vscode
 
 __pycache__/

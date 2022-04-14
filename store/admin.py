@@ -2,7 +2,7 @@ from itertools import product
 from unicodedata import category
 from django.contrib import admin
 
-from .models import *
+from .models import Product, Category
 
 
 @admin.register(Category)

@@ -1,6 +1,7 @@
 from django.test import TestCase
+from django.contrib.auth.models import User
 
-from ..models import *
+from ..models import Product, Category
 
 
 class TestCategoryModel(TestCase):
@@ -37,4 +38,6 @@ class TestProductModel(TestCase):
         """
         data = self.data2
         self.assertTrue(isinstance(data, Product))
-        self.assertEqual(str(data), "GCSb")
+
+        self.assertEqual(str(data), "GCSE")
+        self.assertEqual(self.user.first_name, "hassan")

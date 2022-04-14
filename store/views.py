@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
+
 from .models import Category, Product
 
 
@@ -21,8 +22,9 @@ def products_all(request):
     return render(request, "store/home.html", context)
 
 
-def product_detail(request, slug):
-    product = get_object_or_404(Product, slug=slug, in_stock=True)
+def product_detail(request, product_slug):
+    product = Product.active_products.get(slug=product_slug, in_stock=True)
+    # product = get_object_or_404(Product, slug=slug, in_stock=True)
     context = {"product": product}
     return render(request, "store/products/product_detail.html", context)
 
