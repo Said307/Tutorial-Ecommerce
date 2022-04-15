@@ -27,11 +27,3 @@ def product_detail(request, product_slug):
     # product = get_object_or_404(Product, slug=slug, in_stock=True)
     context = {"product": product}
     return render(request, "store/products/product_detail.html", context)
-
-
-dict = {
-    "dddd": "ddsds",
-    "dddd": "ddsds",
-    "dddd": "ddsds",
-    "dddd": "ddsds",
-}
