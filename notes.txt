@@ -17,3 +17,10 @@ sessions keep track of the "state" of the communication between the server and b
 To implement session django use a cookie containing session id. Only session ID is stored
 in cookies, the actual session data which is dictionary API can be stored anywhere in file,cache or database.
 Django stores this data in a database.
+
+
+sessions are need becuase HTTP protocol is stateless.
+sessions keep track of the "state" of the communication between the server and browser.
+To implement session django use a cookie containing session id. Only session ID is stored
+in cookies, the actual session data which is dictionary API can be stored anywhere in file,cache or database.
+Django stores this data in a database.
