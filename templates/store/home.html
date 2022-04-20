@@ -23,7 +23,10 @@
       <div class="pb-3 h5">All Books</div>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
         {% for product in products %}
-        <a href="{{ product.get_absolute_url }}">
+        <a
+          class="text-decoration-none text-reset"
+          href="{{ product.get_absolute_url }}"
+        >
           <div class="col">
             <div class="card shadow-sm">
               <img
@@ -32,9 +35,7 @@
                 src="{{ product.image.url }}"
               />
               <div class="card-body">
-                <p class="text-dark text-decoration: none;">
-                  {{ product.title }}
-                </p>
+                <p class="card-text pb-3">{{ product.title }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <small class="text-muted">9min read</small>
                 </div>
