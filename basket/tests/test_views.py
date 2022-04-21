@@ -34,11 +34,17 @@ class TestBasketView(TestCase):
         response = self.client.get(reverse('basket:basket_summary'))
         self.assertEqual(response.status_code,200)
 
-    def test_basket_add_request(self):
+    
+    def test_basket_add(self):
         """
-        Testing adding items to the basket """
+        Test adding items to the basket
+        """
         response = self.client.post(
-            reverse('basket:basket_add'), {"productid": 2, "productqty": 2, "action": "post"}, xhr=True)
-        self.assertEqual(response.json(),{'qty':4})
+            reverse('basket:basket_add'), {"productid": 3, "productqty": 1, "action": "post"}, xhr=True)
+        self.assertEqual(response.json(), {'qty': 4})
+        response = self.client.post(
+            reverse('basket:basket_add'), {"productid": 2, "productqty": 1, "action": "post"}, xhr=True)
+        self.assertEqual(response.json(), {'qty': 3})
+
 
         

@@ -19,7 +19,7 @@ def basket_add(request):
         basket.add(product=product, qty=product_qty)
         basketqty = basket.__len__()
         response = JsonResponse({'qty': basketqty})
-        print(response,'###############################################')
+        
         return response
 
 
