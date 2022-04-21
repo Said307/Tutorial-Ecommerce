@@ -1,5 +1,7 @@
+from importlib import import_module
 from unittest import skip
 
+from django.conf import settings
 from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from store.models import Category, Product
@@ -61,6 +63,8 @@ class TestViewResponses(TestCase):
         Test homepage content,
         """
         request = HttpRequest()
+        engine = import_module(settings.SESSION_ENGINE)
+        request.session = engine.SessionStore()
         response = products_all(request)
         html = response.content.decode("utf-8")
         self.assertIn("Bookstore", html)
@@ -69,7 +73,9 @@ class TestViewResponses(TestCase):
         """
         Test all_products view
         """
-        request = self.factory.get("/item/django-beginners")
+        request = HttpRequest()
+        engine = import_module(settings.SESSION_ENGINE)
+        request.session = engine.SessionStore()
         response = products_all(request)
         html = response.content.decode("utf-8")
         self.assertIn("django beginners", html)

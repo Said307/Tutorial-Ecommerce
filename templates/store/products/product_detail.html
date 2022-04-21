@@ -64,7 +64,7 @@
         productid: $("#add-button").val(),
         productqty: $("#select option:selected").text(),
         csrfmiddlewaretoken: "{{csrf_token}}",
-        action: "basket_key",
+        action: "post",
       },
       success: function (json) {
         document.getElementById("basket-qty").innerHTML = json.qty;
@@ -73,4 +73,5 @@
     });
   });
 </script>
+
 {% endblock %}
