@@ -1,9 +1,9 @@
 # from curses.ascii import FF
 from tabnanny import verbose
 from django.db import models
-from django.contrib.auth.models import User
-from django.urls import reverse
 
+from django.urls import reverse
+from account.models import UserBase
 
 class ProductManager(models.Manager):
     def get_queryset(self):
@@ -28,7 +28,7 @@ class Category(models.Model):
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_by = models.ForeignKey(
-        User, related_name="product_creator", on_delete=models.CASCADE
+        UserBase, related_name="product_creator", on_delete=models.CASCADE
     )
 
     title = models.CharField(max_length=255)
