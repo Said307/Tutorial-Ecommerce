@@ -5,8 +5,10 @@ from django.contrib import admin
 
 from .models import UserBase
 
+admin.site.register(UserBase)
 
+""" 
 @admin.register(UserBase)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ["pk","first_name","email"]
-     
+"""

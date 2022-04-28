@@ -19,6 +19,7 @@ def products_all(request):
             Q(title__icontains=q) | Q(description__icontains=q)
         )
     context = {"products": products}
+     
     return render(request, "store/home.html", context)
 
 
