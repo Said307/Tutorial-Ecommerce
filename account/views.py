@@ -8,11 +8,17 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 
-
+from .models import UserBase
 from .forms import RegistrationForm
 from .tokens import account_activation_token
 
 
+@login_required
+def dashboard(request):
+    orders = user_orders(request)
+    return render(request,
+                  'account/user/dashboard.html',
+                  {'section': 'profile', 'orders': orders})
 
 def account_register(request):
 
@@ -41,3 +47,18 @@ def account_register(request):
     else:
         registerForm = RegistrationForm()
     return render(request, 'account/registration/register.html', {'form': registerForm})
+
+
+def account_activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = UserBase.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, user.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        return redirect('account:dashboard')
+    else:
+        return render(request, 'account/registration/activation_invalid.html')
