@@ -15,10 +15,9 @@ from .tokens import account_activation_token
 
 @login_required
 def dashboard(request):
-    orders = user_orders(request)
+    #orders = user_orders(request)
     return render(request,
-                  'account/user/dashboard.html',
-                  {'section': 'profile', 'orders': orders})
+                  'account/user/dashboard.html')
 
 def account_register(request):
 
@@ -42,8 +41,10 @@ def account_register(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
+            one= urlsafe_base64_encode(force_bytes(user.pk))
+            two= account_activation_token.make_token(user)
             user.email_user(subject=subject, message=message)
-            return HttpResponse('registered succesfully and activation sent')
+            return HttpResponse(f'registered succesfully and activation sent {one} and {two}')
     else:
         registerForm = RegistrationForm()
     return render(request, 'account/registration/register.html', {'form': registerForm})
