@@ -68,25 +68,34 @@ def account_activate(request, uidb64, token):
 
 @login_required
 def edit_details(request):
+    page = 'edit'
+   
     if request.method == 'POST':
-        user_form = UserEditForm(instance=request.user, data=request.POST)
-
+        user_form = UserEditForm(request.POST,instance=request.user)
+        
         if user_form.is_valid():
+            
             user_form.save()
     else:
       
         user_form = UserEditForm(instance=request.user)
-        print('not savedddddddddddddddddddddd')
+     
+    
 
     return render(request,
-                  'account/user/edit_details.html', {'user_form': user_form})
+                  'account/user/edit_details.html', {'page':page,'user_form': user_form})
 
 
 
 @login_required
 def delete_user(request):
-    user = UserBase.objects.get(user_name=request.user)
-    user.is_active = False
-    user.save()
-    logout(request)
-    return redirect('account:delete_confirmation')
+    page='delete'
+    if request.method == 'POST':
+
+        user = UserBase.objects.get(user_name=request.user)
+        user.is_active = False
+        user.save()
+        logout(request)
+        return redirect('account:delete_confirmation')
+    return render(request,
+                  'account/user/edit_details.html', {'page':page})

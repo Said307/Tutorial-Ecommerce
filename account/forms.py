@@ -81,7 +81,7 @@ class UserEditForm(forms.ModelForm):
 
     user_name = forms.CharField(
         label='Username', min_length=4, max_length=50, widget=forms.TextInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'Username', 'id': 'form-username', 'readonly': 'readonly'}))
+            attrs={'class': 'form-control mb-3', 'placeholder': 'Username', 'id': 'form-username' }))
  
 
 
@@ -89,7 +89,7 @@ class UserEditForm(forms.ModelForm):
 
     class Meta:
         model = UserBase
-        fields = ('email', 'user_name', 'first_name','about','phone_number')
+        fields = ('email', 'user_name', )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
