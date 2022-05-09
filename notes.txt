@@ -1,17 +1,9 @@
 
 
-1:47 min
+2:35 minutes  password reeset
 
 
-extra requiremnts:
-
-six,
-django-countries
-
-
-
-
-
+ 
 sessions are need becuase HTTP protocol is stateless.
 sessions keep track of the "state" of the communication between the server and browser.
 To implement session django use a cookie containing session id. Only session ID is stored
