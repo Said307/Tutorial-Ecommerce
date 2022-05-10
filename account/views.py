@@ -9,9 +9,10 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 
 from .models import UserBase
-from .forms import RegistrationForm
+from .forms import RegistrationForm,UserEditForm
 from .tokens import account_activation_token
 
+from django.core.mail import send_mail
 
 @login_required
 def dashboard(request):
@@ -24,7 +25,7 @@ def account_register(request):
     #if request.user.is_authenticated:
         #return redirect('/')
 
-    
+
     if request.method == 'POST':
         registerForm = RegistrationForm(request.POST)
         if registerForm.is_valid():
@@ -41,10 +42,9 @@ def account_register(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
-            one= urlsafe_base64_encode(force_bytes(user.pk))
-            two= account_activation_token.make_token(user)
+           
             user.email_user(subject=subject, message=message)
-            return HttpResponse(f'registered succesfully and activation sent {one} and {two}')
+            return HttpResponse('registered succesfully and activation sent')
     else:
         registerForm = RegistrationForm()
     return render(request, 'account/registration/register.html', {'form': registerForm})
@@ -63,3 +63,39 @@ def account_activate(request, uidb64, token):
         return redirect('account:dashboard')
     else:
         return render(request, 'account/registration/activation_invalid.html')
+
+
+
+@login_required
+def edit_details(request):
+    page = 'edit'
+   
+    if request.method == 'POST':
+        user_form = UserEditForm(request.POST,instance=request.user)
+        
+        if user_form.is_valid():
+            
+            user_form.save()
+    else:
+      
+        user_form = UserEditForm(instance=request.user)
+     
+    
+
+    return render(request,
+                  'account/user/edit_details.html', {'page':page,'user_form': user_form})
+
+
+
+@login_required
+def delete_user(request):
+    page='delete'
+    if request.method == 'POST':
+
+        user = UserBase.objects.get(user_name=request.user)
+        user.is_active = False
+        user.save()
+        logout(request)
+        return redirect('account:delete_confirmation')
+    return render(request,
+                  'account/user/edit_details.html', {'page':page})
