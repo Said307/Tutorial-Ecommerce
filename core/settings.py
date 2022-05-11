@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "store",
-    "basket","account","payment",
+    "basket",
+    "account",
+    "payment",
 ]
 
 MIDDLEWARE = [
@@ -132,22 +134,21 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 
 # Custom user model
-AUTH_USER_MODEL = 'account.UserBase'
-LOGIN_REDIRECT_URL = '/account/dashboard'
-LOGIN_URL = '/account/login/'
+AUTH_USER_MODEL = "account.UserBase"
+LOGIN_REDIRECT_URL = "/account/dashboard"
+LOGIN_URL = "/account/login/"
 
 
 # Email setting
 
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
-EMAIL_USE_TLS = True 
-EMAIL_HOST = 'smtp-mail.outlook.com'
-EMAIL_PORT = 587 
-EMAIL_HOST_USER = 'sadiq-said@hotmail.com' 
-EMAIL_HOST_PASSWORD = ''
-DEFAULT_FROM_EMAIL = 'testing@testing.com'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp-mail.outlook.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "sadiq-said@hotmail.com"
+EMAIL_HOST_PASSWORD = ""
+DEFAULT_FROM_EMAIL = "testing@testing.com"
 
 
-
-PASSWORD_RESET_TIMEOUT_DAYS = 2 
+PASSWORD_RESET_TIMEOUT_DAYS = 2

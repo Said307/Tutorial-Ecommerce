@@ -7,13 +7,13 @@ import django_countries.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('account', '0001_initial'),
+        ("account", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='userbase',
-            name='country',
+            model_name="userbase",
+            name="country",
             field=django_countries.fields.CountryField(max_length=2),
         ),
     ]

@@ -3,10 +3,10 @@ from decimal import Decimal
 from store.models import Product
 
 
-class Basket():
+class Basket:
     """A basket class providing default behaviours which
     can be inherited or overriden as necessary"""
-     
+
     def __init__(self, request):
         """creates a session on any page the user visits"""
         self.session = request.session
@@ -14,12 +14,11 @@ class Basket():
         if not basket:
             basket = self.session["skey"] = {}
         self.basket = basket
-      
 
     def add(self, product, qty):
         """Adding product to user basket session data"""
         product_id = product.id
-        
+
         if product_id not in self.basket:
             self.basket[product_id] = {
                 "price": str(product.price),
@@ -40,30 +39,35 @@ class Basket():
         product_ids = self.basket.keys()
         products = Product.active_products.filter(id__in=product_ids)
         basket = self.basket.copy()
-         
+
         for product in products:
             basket[str(product.id)]["product"] = product
 
         for item in basket.values():
             item["price"] = Decimal(item["price"])
             item["total_price"] = item["price"] * item["qty"]
- 
+
             yield item
-    
+
     def update(self, product, qty):
         """
         Update values in session data
         """
         product_id = str(product)
         if product_id in self.basket:
-            self.basket[product_id]['qty'] = qty
+            self.basket[product_id]["qty"] = qty
         self.save()
 
     def get_total_price(self):
-        return sum(Decimal(item['price']) * item['qty'] for item in self.basket.values())
+        return sum(
+            Decimal(item["price"]) * item["qty"] for item in self.basket.values()
+        )
 
     def get_subtotal_price(self):
-        return sum(Decimal(item['price']) * item['qty'] for item in self.basket.values())
+        return sum(
+            Decimal(item["price"]) * item["qty"] for item in self.basket.values()
+        )
+
     def delete(self, product):
         """
         Delete item from session data
@@ -77,4 +81,3 @@ class Basket():
 
     def save(self):
         self.session.modified = True
-
