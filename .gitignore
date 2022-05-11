@@ -16,7 +16,7 @@ local_settings.py
 
 
 media/
-static/
+
 db.sqlite3
 
 # Distribution / packaging

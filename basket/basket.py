@@ -3,7 +3,7 @@ from decimal import Decimal
 from store.models import Product
 
 
-class Basket:
+class Basket():
     """A basket class providing default behaviours which
     can be inherited or overriden as necessary"""
      
