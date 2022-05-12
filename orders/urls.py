@@ -1,20 +1,11 @@
-
-
-from django.conf.urls import path
-
+from django.urls import path
 
 
 from . import views
 
-app_name="orders"
+app_name = "orders"
 
 
-
-urlpatterns=[
-
-    path("add/",views.add),name='add'),
-
-
-
+urlpatterns = [
+    path("add/", views.add, name="add"),
 ]
-

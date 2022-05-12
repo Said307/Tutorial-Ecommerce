@@ -1,6 +1,6 @@
 import stripe
 import os
-from dotenv import find_dotenv,load_dotenv
+from dotenv import find_dotenv, load_dotenv
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
@@ -19,5 +19,6 @@ def BasketView(request):
     intent = stripe.PaymentIntent.create(
         amount=total, currency="gbp", metadata={"userid": request.user.id}
     )
+
     context = {"client_secret": intent.client_secret}
     return render(request, "payment/home.html", context)
