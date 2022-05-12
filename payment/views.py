@@ -1,5 +1,6 @@
 import stripe
-
+import os
+from dotenv import find_dotenv,load_dotenv
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
@@ -13,7 +14,8 @@ def BasketView(request):
     total = str(basket.get_total_price())
     total = total.replace(".", "")
     total = int(total)
-    stripe.api_key = ""
+    load_dotenv(find_dotenv(".env"))
+    stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
     intent = stripe.PaymentIntent.create(
         amount=total, currency="gbp", metadata={"userid": request.user.id}
     )
