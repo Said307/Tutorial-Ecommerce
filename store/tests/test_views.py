@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from store.models import Category, Product
 from django.urls import reverse
 from django.http import HttpRequest
+from django.contrib.auth import get_user_model
 
 from store.views import products_all
 
@@ -23,7 +24,8 @@ class TestViewResponses(TestCase):
     def setUp(self):
         self.c = Client()
         self.factory = RequestFactory()
-        User.objects.create(username="sadiq")
+        User = get_user_model()
+        User.objects.create(user_name="admin")
         Category.objects.create(name="GCSE", slug="GCSE")
         Product.objects.create(
             category_id=1,

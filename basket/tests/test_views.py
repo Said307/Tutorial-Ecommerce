@@ -2,12 +2,15 @@ from django.contrib.auth.models import User
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.http import HttpRequest
+from django.contrib.auth import get_user_model
+
 from store.models import Category, Product
 
 
 class TestBasketView(TestCase):
     def setUp(self):
-        User.objects.create(username="admin")
+        User = get_user_model()
+        User.objects.create(user_name="admin")
         Category.objects.create(name="django", slug="django")
         Product.objects.create(
             category_id=1,

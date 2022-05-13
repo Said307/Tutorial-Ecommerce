@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from ..models import Product, Category
 
@@ -7,6 +8,7 @@ from ..models import Product, Category
 class TestCategoryModel(TestCase):
     def setUp(self):
         self.data1 = Category.objects.create(name="django", slug="django", id=5)
+        
 
     def test_category_model_entry(self):
         """
@@ -25,8 +27,10 @@ class TestCategoryModel(TestCase):
 
 class TestProductModel(TestCase):
     def setUp(self):
+        User = get_user_model()
+      
         self.data1 = Category.objects.create(name="django", slug="django", id=5)
-        self.user = User.objects.create(first_name="hassan")
+        self.user =   User.objects.create(first_name="hassan")
         self.data2 = Product.objects.create(
             title="GCSE", quantity=50, price=44, created_by=self.user, category_id=5
         )
