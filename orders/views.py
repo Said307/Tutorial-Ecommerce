@@ -17,10 +17,10 @@ def add(request):
         baskettotal = basket.get_total_price()
 
         # Check if order exists
-        if Order.objects.filter(order_key=order_key).exists():
+        if Orders.objects.filter(order_key=order_key).exists():
             pass
         else:
-            order = Order.objects.create(
+            order = Orders.objects.create(
                 user_id=user_id,
                 full_name="name",
                 address1="add1",

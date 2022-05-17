@@ -22,3 +22,9 @@ def BasketView(request):
 
     context = {"client_secret": intent.client_secret}
     return render(request, "payment/home.html", context)
+
+
+def order_placed(request):
+    basket = Basket(request)
+    basket.clear()
+    return render(request, 'payment/orderplaced.html')
