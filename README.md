@@ -9,3 +9,5 @@ Following along youtube tutorial https://www.youtube.com/watch?v=VOwfGW-ZTIY.
 - Creating testing classes to test django views and models.
 - Using context processors and model managers.
 - Getting familiar with django sessions.
+- Unit testing
+- Stripe payment  Integration
