@@ -3,7 +3,12 @@ from unicodedata import category
 from django.contrib import admin
 
 from .models import Product, Category
+from orders.models import Order
 
+
+@admin.register(Order)
+class CategoryAdmin(admin.ModelAdmin):
+    pass
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

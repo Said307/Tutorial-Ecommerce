@@ -3,7 +3,7 @@ from django.http.response import JsonResponse
 
 from basket.basket import Basket
 from store.models import Product
-from .models import Orders, OrderItem
+from .models import Order, OrderItem
 
 # Create your views here.
 
@@ -11,15 +11,20 @@ from .models import Orders, OrderItem
 def add(request):
     basket = Basket(request)
     if request.POST.get("action") == "post":
-
+         
         order_key = request.POST.get("order_key")
         user_id = request.user.id
         baskettotal = basket.get_total_price()
-
+       
         # Check if order exists
-        if Orders.objects.filter(order_key=order_key).exists():
+   
+
+        if Order.objects.filter(order_key=order_key).exists():
+              
             pass
+            
         else:
+               
             order = Orders.objects.create(
                 user_id=user_id,
                 full_name="name",
@@ -28,15 +33,16 @@ def add(request):
                 total_paid=baskettotal,
                 order_key=order_key,
             )
+           
+            
             order_id = order.pk
-
             for item in basket:
                 OrderItem.objects.create(
                     order_id=order_id,
                     product=item["product"],
                     price=item["price"],
                     quantity=item["qty"],
-                )
-
+                ) 
+ 
         response = JsonResponse({"success": "Return something"})
         return response

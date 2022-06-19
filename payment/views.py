@@ -15,7 +15,7 @@ def BasketView(request):
     total = total.replace(".", "")
     total = int(total)
     load_dotenv(find_dotenv(".env"))
-    stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
+    stripe.api_key = os.getenv("STRIPE_SKEY")
     intent = stripe.PaymentIntent.create(
         amount=total, currency="gbp", metadata={"userid": request.user.id}
     )
