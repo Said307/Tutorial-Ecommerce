@@ -35,7 +35,7 @@ class CustomAccountManager(BaseUserManager):
         return user
 
 
-class UserBase(AbstractBaseUser, PermissionsMixin):
+class UserBase(AbstractBaseUser, PermissionsMixin): # AbstractBaseUser contains only authentication no fields
 
     email = models.EmailField(_("email address"), unique=True)
     user_name = models.CharField(max_length=150, unique=True)

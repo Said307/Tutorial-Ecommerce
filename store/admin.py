@@ -3,12 +3,16 @@ from unicodedata import category
 from django.contrib import admin
 
 from .models import Product, Category
-from orders.models import Order
+from orders.models import Order,OrderItem
 
 
 @admin.register(Order)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["id","order_key", "full_name","total_paid"]
+
+@admin.register(OrderItem)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ["id", "order_id","quantity","price"]
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
