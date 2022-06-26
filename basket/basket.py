@@ -10,9 +10,9 @@ class Basket:
     def __init__(self, request):
         """creates a session on any page the user visits"""
         self.session = request.session
-        basket = self.session.get("skey")
+        basket = request.session.get("skey")
         if not basket:
-            basket = self.session["skey"] = {}
+            basket = request.session["skey"] = {}
         self.basket = basket
 
     def add(self, product, qty):
@@ -81,3 +81,6 @@ class Basket:
 
     def save(self):
         self.session.modified = True
+    
+    def clear(self):
+        self.basket.clear()

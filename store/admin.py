@@ -8,7 +8,7 @@ from orders.models import Order,OrderItem
 
 @admin.register(Order)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ["id","order_key", "full_name","total_paid"]
+    list_display = ["id","created","order_key", "full_name","city","total_paid"]
 
 @admin.register(OrderItem)
 class CategoryAdmin(admin.ModelAdmin):

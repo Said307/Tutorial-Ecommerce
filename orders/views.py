@@ -11,7 +11,7 @@ from .models import Order, OrderItem
 def add(request):
     basket = Basket(request)
     if request.POST.get("action") == "post":
-         
+       
         order_key = request.POST.get("order_key")
         user_id = request.user.id
         baskettotal = basket.get_total_price()
@@ -25,7 +25,7 @@ def add(request):
             
         else:
                
-            order = Orders.objects.create(
+            order = Order.objects.create(
                 user_id=user_id,
                 full_name="name",
                 address1="add1",
@@ -44,5 +44,5 @@ def add(request):
                     quantity=item["qty"],
                 ) 
  
-        response = JsonResponse({"success": "Return something"})
+        response = JsonResponse({"success": "Order successfull"})
         return response
